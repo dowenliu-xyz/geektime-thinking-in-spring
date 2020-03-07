@@ -1,10 +1,14 @@
 package org.geekbang.thinking.in.spring.bean.definition;
 
 import org.geekbang.thinking.in.spring.iov.overview.domain.User;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  * 注解 BeanDefinition 示例
@@ -21,6 +25,11 @@ public class AnnotationBeanDefinitionDemo {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
         // 注册 Configuration Class (配置类)
         applicationContext.register(AnnotationBeanDefinitionDemo.class);
+        // 通过 BeanDefinition 注册 API 实现
+        // 1. 命名 Bean 的注册方式
+        registerUserBeanDefinition(applicationContext, "mercyblitz-user");
+        // 2. 非命名 Bean 的注册方式
+        registerUserBeanDefinition(applicationContext);
         // 启动 Spring 应用上下文
         applicationContext.refresh();
         // 按照类型依赖查找
@@ -30,10 +39,30 @@ public class AnnotationBeanDefinitionDemo {
         applicationContext.close();
     }
 
+    /**
+     * 命名 Bean 的注册方式
+     */
+    public static void registerUserBeanDefinition(BeanDefinitionRegistry registry, String beanName) {
+        BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(User.class);
+        beanDefinitionBuilder
+                .addPropertyValue("id", 1L)
+                .addPropertyValue("name", "小马哥");
+        // 注册 BeanDefinition
+        if (StringUtils.hasText(beanName))
+            registry.registerBeanDefinition(beanName, beanDefinitionBuilder.getBeanDefinition());
+        else
+            BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinitionBuilder.getBeanDefinition(), registry);
+    }
+
+    public static void registerUserBeanDefinition(BeanDefinitionRegistry registry) {
+        registerUserBeanDefinition(registry, null);
+    }
+
     // 2. 通过 @Component 方式
     @Component // 定义当前类作为 Spring Bean (组件）
     public static class Config {
         // 1. 通过 @Bean 方式定义
+
         /**
          * 通过 Java 注解的方式，定义了一个 Bean
          */
