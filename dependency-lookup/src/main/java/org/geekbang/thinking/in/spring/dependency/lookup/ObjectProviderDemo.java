@@ -1,8 +1,11 @@
 package org.geekbang.thinking.in.spring.dependency.lookup;
 
+import org.geekbang.thinking.in.spring.iov.overview.domain.User;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 
 /**
  * 通过 {@link ObjectProvider} 进行依赖查找
@@ -21,16 +24,38 @@ public class ObjectProviderDemo { // @Configuration 是非必须注解。 PS.传
         applicationContext.refresh();
         // 依赖查找
         lookupByObjectProvider(applicationContext);
+        lookupIfAvailable(applicationContext);
+        lookupStreamOps(applicationContext);
         // 关闭 Spring 应用上下文
         applicationContext.close();
     }
 
+    private static void lookupStreamOps(ApplicationContext applicationContext) {
+        ObjectProvider<String> objectProvider = applicationContext.getBeanProvider(String.class);
+//        for (String string : objectProvider) {
+//            System.out.println(string);
+//        }
+        objectProvider.stream().forEach(System.out::println);
+    }
+
+    private static void lookupIfAvailable(ApplicationContext applicationContext) {
+        ObjectProvider<User> userObjectProvider = applicationContext.getBeanProvider(User.class);
+        User user = userObjectProvider.getIfAvailable(User::createUser);
+        System.out.println("当前 User 对象：" + user);
+    }
+
     @Bean
+    @Primary
     public String helloWorld() { // 方法名就是 Bean 名称 = "helloWorld"
         return "Hello, World";
     }
 
-    private static void lookupByObjectProvider(AnnotationConfigApplicationContext applicationContext) {
+    @Bean
+    public String message() {
+        return "Message";
+    }
+
+    private static void lookupByObjectProvider(ApplicationContext applicationContext) {
         ObjectProvider<String> objectProvider = applicationContext.getBeanProvider(String.class);
         System.out.println(objectProvider.getObject());
     }
