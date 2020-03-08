@@ -29,12 +29,14 @@ public class BeanInitializationDemo {
         UserFactory userFactory = applicationContext.getBean(UserFactory.class);
 
         System.out.println(userFactory);
+        System.out.println("Spring 应用上下文准备关闭...");
         // 关闭 Spring 应用上下文
         applicationContext.close();
+        System.out.println("Spring 应用上下文已关闭");
     }
 
-    @Bean(initMethod = "initUserFactory")
-    @Lazy
+    @Bean(initMethod = "initUserFactory", destroyMethod = "doDestroy")
+    @Lazy(false)
     public DefaultUserFactory userFactory() {
         return new DefaultUserFactory();
     }
