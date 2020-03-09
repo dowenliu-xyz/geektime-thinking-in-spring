@@ -16,6 +16,7 @@ public class UserHolder {
     }
 
     public UserHolder(User user) {
+        System.out.println("UserHolder: constructor");
         this.user = user;
     }
 
@@ -24,6 +25,7 @@ public class UserHolder {
     }
 
     public void setUser(User user) {
+        System.out.println("UserHolder: setter");
         this.user = user;
     }
 
