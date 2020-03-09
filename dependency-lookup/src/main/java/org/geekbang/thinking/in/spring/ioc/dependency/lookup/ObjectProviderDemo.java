@@ -1,4 +1,4 @@
-package org.geekbang.thinking.in.spring.dependency.lookup;
+package org.geekbang.thinking.in.spring.ioc.dependency.lookup;
 
 import org.geekbang.thinking.in.spring.iov.overview.domain.User;
 import org.springframework.beans.factory.ObjectProvider;

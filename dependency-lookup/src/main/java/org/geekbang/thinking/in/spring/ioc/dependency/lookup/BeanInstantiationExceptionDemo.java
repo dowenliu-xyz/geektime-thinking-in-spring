@@ -1,4 +1,4 @@
-package org.geekbang.thinking.in.spring.dependency.lookup;
+package org.geekbang.thinking.in.spring.ioc.dependency.lookup;
 
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;

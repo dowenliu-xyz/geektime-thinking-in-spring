@@ -1,11 +1,9 @@
-package org.geekbang.thinking.in.spring.dependency.injection;
+package org.geekbang.thinking.in.spring.ioc.dependency.injection;
 
-import org.geekbang.thinking.in.spring.iov.overview.domain.User;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 /**
  * 基于 API 实现依赖 Setter 方法注入示例
