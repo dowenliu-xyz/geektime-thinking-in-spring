@@ -5,6 +5,8 @@
     <bean id="user" class="org.geekbang.thinking.in.spring.iov.overview.domain.User">
         <property name="id" value="1"/>
         <property name="name" value="abc"/>
+        <property name="city" value="HANGZHOU"/>
+        <property name="configLocation" value="classpath:/META-INF/user-config.properties"/>
     </bean>
 
     <bean id="superUser" class="org.geekbang.thinking.in.spring.iov.overview.domain.SuperUser" parent="user" primary="true"><!-- parent 会导致拷贝 user bean 的property；primary 解决 getBean(User.class) 不唯一的问题 -->
