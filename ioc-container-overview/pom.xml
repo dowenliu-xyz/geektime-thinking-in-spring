@@ -13,11 +13,10 @@
     <artifactId>ioc-container-overview</artifactId>
 
     <dependencies>
-        <!-- Spring Iod 核心依赖-->
+        <!-- Spring IoC 核心依赖-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
-
 </project>

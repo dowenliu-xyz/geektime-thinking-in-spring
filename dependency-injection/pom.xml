@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dependency-lookup</artifactId>
+    <artifactId>dependency-injection</artifactId>
 
     <dependencies>
         <!-- Spring IoC 核心依赖-->
