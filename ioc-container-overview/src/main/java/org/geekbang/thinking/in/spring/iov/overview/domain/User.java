@@ -3,6 +3,9 @@ package org.geekbang.thinking.in.spring.iov.overview.domain;
 import org.geekbang.thinking.in.spring.iov.overview.enums.City;
 import org.springframework.core.io.Resource;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 用户类
  * <p>create at 2020/3/7</p>
@@ -14,6 +17,8 @@ public class User {
     private Long id;
     private String name;
     private City city;
+    private City[] workCities;
+    private List<City> lifeCities;
     private Resource configLocation;
 
     public Long getId() {
@@ -48,12 +53,30 @@ public class User {
         this.configLocation = configLocation;
     }
 
+    public City[] getWorkCities() {
+        return workCities;
+    }
+
+    public void setWorkCities(City[] workCities) {
+        this.workCities = workCities;
+    }
+
+    public List<City> getLifeCities() {
+        return lifeCities;
+    }
+
+    public void setLifeCities(List<City> lifeCities) {
+        this.lifeCities = lifeCities;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", city=" + city +
+                ", workCities=" + Arrays.toString(workCities) +
+                ", lifeCities=" + lifeCities +
                 ", configLocation=" + configLocation +
                 '}';
     }
