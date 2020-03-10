@@ -1,11 +1,17 @@
 package org.geekbang.thinking.in.spring.ioc.dependency.injection;
 
+import org.geekbang.thinking.in.spring.ioc.dependency.injection.annotation.InjectedUser;
+import org.geekbang.thinking.in.spring.ioc.dependency.injection.annotation.MyAutowired;
 import org.geekbang.thinking.in.spring.iov.overview.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 import javax.inject.Inject;
 import java.util.Map;
@@ -28,7 +34,7 @@ public class AnnotationDependencyInjectionResolutionDemo {
     @Lazy
     private User lazyUser;
 
-    @Autowired
+    @MyAutowired
     private Optional<User> userOptional; // superUser
 
     // 集合类型的依赖注入
@@ -44,6 +50,26 @@ public class AnnotationDependencyInjectionResolutionDemo {
     // 是否首要（primary = true）
     @Autowired
     private User user;
+
+    @InjectedUser
+    private User myInjectedUser;
+
+//    @Bean(name = AnnotationConfigUtils.AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME)
+//    public static AutowiredAnnotationBeanPostProcessor beanPostProcessor() {
+//        AutowiredAnnotationBeanPostProcessor beanPostProcessor = new AutowiredAnnotationBeanPostProcessor();
+//        // + 新注解 @InjectedUser
+//        Set<Class<? extends Annotation>> autowiredAnnotations = new LinkedHashSet<>(Arrays.asList(Autowired.class, Value.class, Inject.class, InjectedUser.class));
+//        beanPostProcessor.setAutowiredAnnotationTypes(autowiredAnnotations);
+//        return beanPostProcessor;
+//    }
+
+    @Bean
+    @Order(Ordered.LOWEST_PRECEDENCE - 3)
+    public static AutowiredAnnotationBeanPostProcessor beanPostProcessor() {
+        AutowiredAnnotationBeanPostProcessor beanPostProcessor = new AutowiredAnnotationBeanPostProcessor();
+        beanPostProcessor.setAutowiredAnnotationType(InjectedUser.class);
+        return beanPostProcessor;
+    }
 
     public static void main(String[] args) {
         // 创建 BeanFactory 容器
@@ -69,6 +95,8 @@ public class AnnotationDependencyInjectionResolutionDemo {
         System.out.println("demo.users = " + demo.users);
         // 期待输出 superUser Bean
         System.out.println("demo.userOptional = " + demo.userOptional);
+        // 期待输出 superUser Bean
+        System.out.println("demo.myInjectedUser = " + demo.myInjectedUser);
 
         // 关闭应用上下文
         applicationContext.close();
