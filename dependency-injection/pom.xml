@@ -25,5 +25,12 @@
             <artifactId>ioc-container-overview</artifactId>
             <version>${version}</version>
         </dependency>
+
+        <!-- JSR 330 API -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
     </dependencies>
 </project>

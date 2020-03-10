@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 
+import javax.inject.Inject;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,6 +20,9 @@ import java.util.Optional;
  */
 @Configuration
 public class AnnotationDependencyInjectionResolutionDemo {
+    @Inject
+    private User injectedUser;
+
     // 依赖查找 + 延迟
     @Autowired
     @Lazy
@@ -60,6 +64,7 @@ public class AnnotationDependencyInjectionResolutionDemo {
 
         // 期待输出 superUser Bean
         System.out.println("demo.user = " + demo.user);
+        System.out.println("demo.injectedUser = " + demo.injectedUser);
         // 期待输出 user superUser
         System.out.println("demo.users = " + demo.users);
         // 期待输出 superUser Bean
