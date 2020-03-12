@@ -1,6 +1,6 @@
 package org.geekbang.thinking.in.spring.ioc.dependency.injection;
 
-import org.geekbang.thinking.in.spring.iov.overview.domain.User;
+import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 
 /**
  * {@link User} 的 Holder 类

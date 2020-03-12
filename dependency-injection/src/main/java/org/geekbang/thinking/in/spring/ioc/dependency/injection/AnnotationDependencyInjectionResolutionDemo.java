@@ -2,7 +2,7 @@ package org.geekbang.thinking.in.spring.ioc.dependency.injection;
 
 import org.geekbang.thinking.in.spring.ioc.dependency.injection.annotation.InjectedUser;
 import org.geekbang.thinking.in.spring.ioc.dependency.injection.annotation.MyAutowired;
-import org.geekbang.thinking.in.spring.iov.overview.domain.User;
+import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;

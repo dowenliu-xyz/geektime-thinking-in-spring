@@ -1,6 +1,6 @@
-package org.geekbang.thinking.in.spring.iov.overview.container;
+package org.geekbang.thinking.in.spring.ioc.overview.container;
 
-import org.geekbang.thinking.in.spring.iov.overview.domain.User;
+import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;

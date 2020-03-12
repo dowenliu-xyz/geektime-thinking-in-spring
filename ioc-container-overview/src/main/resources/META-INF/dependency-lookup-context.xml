@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="user" class="org.geekbang.thinking.in.spring.iov.overview.domain.User">
+    <bean id="user" class="org.geekbang.thinking.in.spring.ioc.overview.domain.User">
         <property name="id" value="1"/>
         <property name="name" value="abc"/>
         <property name="city" value="HANGZHOU"/>
@@ -16,7 +16,7 @@
         <property name="configLocation" value="classpath:/META-INF/user-config.properties"/>
     </bean>
 
-    <bean id="superUser" class="org.geekbang.thinking.in.spring.iov.overview.domain.SuperUser" parent="user" primary="true"><!-- parent 会导致拷贝 user bean 的property；primary 解决 getBean(User.class) 不唯一的问题 -->
+    <bean id="superUser" class="org.geekbang.thinking.in.spring.ioc.overview.domain.SuperUser" parent="user" primary="true"><!-- parent 会导致拷贝 user bean 的property；primary 解决 getBean(User.class) 不唯一的问题 -->
         <property name="address" value="杭州"/>
     </bean>
 

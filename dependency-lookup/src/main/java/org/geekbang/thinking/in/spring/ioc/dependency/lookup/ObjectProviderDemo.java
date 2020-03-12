@@ -1,6 +1,6 @@
 package org.geekbang.thinking.in.spring.ioc.dependency.lookup;
 
-import org.geekbang.thinking.in.spring.iov.overview.domain.User;
+import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

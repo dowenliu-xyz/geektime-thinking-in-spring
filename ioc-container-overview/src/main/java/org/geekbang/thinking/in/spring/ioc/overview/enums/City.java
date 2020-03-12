@@ -1,4 +1,4 @@
-package org.geekbang.thinking.in.spring.iov.overview.enums;
+package org.geekbang.thinking.in.spring.ioc.overview.enums;
 
 /**
  * 城市枚举

@@ -1,7 +1,7 @@
-package org.geekbang.thinking.in.spring.iov.overview.dependency.lookup;
+package org.geekbang.thinking.in.spring.ioc.overview.dependency.lookup;
 
-import org.geekbang.thinking.in.spring.iov.overview.annotation.Super;
-import org.geekbang.thinking.in.spring.iov.overview.domain.User;
+import org.geekbang.thinking.in.spring.ioc.overview.annotation.Super;
+import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectFactory;

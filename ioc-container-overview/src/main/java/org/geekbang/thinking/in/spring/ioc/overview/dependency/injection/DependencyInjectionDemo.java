@@ -1,6 +1,6 @@
-package org.geekbang.thinking.in.spring.iov.overview.dependency.injection;
+package org.geekbang.thinking.in.spring.ioc.overview.dependency.injection;
 
-import org.geekbang.thinking.in.spring.iov.overview.repository.UserRepository;
+import org.geekbang.thinking.in.spring.ioc.overview.repository.UserRepository;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.ApplicationContext;

@@ -1,6 +1,6 @@
 package org.geekbang.thinking.in.spring.bean.factory;
 
-import org.geekbang.thinking.in.spring.iov.overview.domain.User;
+import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 
 /**
  * {@link User} 工厂
