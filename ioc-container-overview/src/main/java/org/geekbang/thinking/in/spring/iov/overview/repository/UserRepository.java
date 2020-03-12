@@ -1,7 +1,6 @@
 package org.geekbang.thinking.in.spring.iov.overview.repository;
 
 import org.geekbang.thinking.in.spring.iov.overview.domain.User;
-import org.omg.CORBA.portable.ApplicationException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.ApplicationContext;
