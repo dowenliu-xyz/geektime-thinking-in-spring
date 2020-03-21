@@ -6,22 +6,19 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 
 /**
- * Bean 初始化生命周期示例
- * <p>create at 2020/3/13</p>
+ * <p>create at 2020/3/21</p>
  *
  * @author liufl
  * @since 1.0
  */
-public class BeanInitializationLifecycleDemo {
+public class BeanLifecycleDemo {
     public static void main(String[] args) {
-        executeBeanFactory();
-    }
-
-    private static void executeBeanFactory() {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         // 添加 BeanPostProcessor 实现 MyInstantiationAwareBeanPostProcessor
         beanFactory.addBeanPostProcessor(new MyInstantiationAwareBeanPostProcessor());
-        // 添加 CommonAnnotationBeanPostProcessor 解决 @PostConstruct
+        // 添加 MyDestructionAwareBeanPostProcessor 执行销毁前回调
+        beanFactory.addBeanPostProcessor(new MyDestructionAwareBeanPostProcessor());
+        // 添加 CommonAnnotationBeanPostProcessor 解决 @PostConstruct @PreDestroy
         beanFactory.addBeanPostProcessor(new CommonAnnotationBeanPostProcessor());
         // 基于 XML 资源 BeanDefinitionReader 实现
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
@@ -43,6 +40,9 @@ public class BeanInitializationLifecycleDemo {
         UserHolder userHolder = beanFactory.getBean("userHolder", UserHolder.class);
 
         System.out.println(userHolder);
-    }
 
+        // 执行 Bean 销毁
+        beanFactory.destroyBean("userHolder", userHolder);
+        System.out.println(userHolder);
+    }
 }
