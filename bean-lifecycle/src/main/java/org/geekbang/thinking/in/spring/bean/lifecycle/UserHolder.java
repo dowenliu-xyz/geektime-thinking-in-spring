@@ -2,12 +2,11 @@ package org.geekbang.thinking.in.spring.bean.lifecycle;
 
 import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanClassLoaderAware;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.*;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
+
+import javax.annotation.PostConstruct;
 
 /**
  * User Holder 类
@@ -16,7 +15,7 @@ import org.springframework.core.env.Environment;
  * @author liufl
  * @since 1.0
  */
-public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAware, EnvironmentAware {
+public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAware, EnvironmentAware, InitializingBean, SmartInitializingSingleton {
     private final User user;
     private Integer number;
     private String description;
@@ -43,6 +42,33 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFact
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * 依赖于注解驱动
+     * 需要 ApplicationContext, 仅 BeanFactory 是不行了
+     */
+    @PostConstruct
+    public void initPostConstruct() {
+        // postProcessBeforeInitialization V3 -> initPostConstruct V4
+        this.description = "The user holder V4";
+        System.out.println("initPostConstruct() = " + description);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        // initPostConstruct V4 -> afterPropertiesSet V5
+        this.description = "The user holder V5";
+        System.out.println("afterPropertiesSet() = " + description);
+    }
+
+    /**
+     * 自定义初始化方法
+     */
+    public void init() {
+        // afterPropertiesSet V5 -> init V6
+        this.description = "The user holder V6";
+        System.out.println("init() = " + description);
     }
 
     @Override
@@ -73,5 +99,12 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFact
     @Override
     public void setEnvironment(Environment environment) {
         this.environment = environment;
+    }
+
+    @Override
+    public void afterSingletonsInstantiated() {
+        // postProcessAfterInitialization V7 -> afterSingletonsInstantiated V8
+        this.description = "The user holder V8";
+        System.out.println("afterSingletonsInstantiated() = " + description);
     }
 }
