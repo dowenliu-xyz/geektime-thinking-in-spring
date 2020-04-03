@@ -21,6 +21,7 @@
         <module>dependency-source</module>
         <module>bean-scope</module>
         <module>bean-lifecycle</module>
+        <module>configuration-metadata</module>
     </modules>
 
     <!-- Spring 依赖管理 -->
